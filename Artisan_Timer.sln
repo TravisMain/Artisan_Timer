@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Artisan_Timer", "Artisan_Timer.pyproj", "{D8DBCD40-FB7D-4E55-B2F9-1EE090D2FA5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8DBCD40-FB7D-4E55-B2F9-1EE090D2FA5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8DBCD40-FB7D-4E55-B2F9-1EE090D2FA5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF820F75-0051-450F-8E4B-5A92B618E35D}
+	EndGlobalSection
+EndGlobal
