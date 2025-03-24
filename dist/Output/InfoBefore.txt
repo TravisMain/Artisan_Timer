@@ -1,0 +1,20 @@
+Welcome to Modern Countdown Timer Setup
+---------------------------------------
+
+Thank you for choosing Modern Countdown Timer, a sleek and efficient tool for managing your time and tasks!
+
+About This Program:
+- A modern countdown timer with support for up to 999 hours.
+- Track tasks with Job Number and Job Description fields.
+- Logs pause events to Excel files saved in your Documents folder.
+- Features a mini window for monitoring when minimized.
+
+Installation Notes:
+- This setup will install Modern Countdown Timer to your Program Files directory.
+- Excel files and timer state will be saved in your Documents folder (e.g., C:\Users\YourName\Documents).
+- No additional software is required, but ensure you have write access to your Documents folder.
+
+Click "Next" to begin the installation. For support or feedback, visit our GitHub page:
+https://github.com/TravisMain/Artisan_Timer
+
+© GuthSouth Africa - Build 1.0.0

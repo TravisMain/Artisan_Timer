@@ -12,7 +12,7 @@ class ModernCountdownTimer:
     def __init__(self, root):
         self.root = root
         self.root.title("Modern Countdown Timer")
-        self.root.geometry("500x499")  # Increased height by 20% (from 416 to 499)
+        self.root.geometry("500x499")
         self.root.resizable(False, False)
         self.root.configure(bg="#2E3440")
         
@@ -30,10 +30,10 @@ class ModernCountdownTimer:
         self.mini_window = None
         self.mini_time_display = None
         
-        # Save file path
-        self.save_file = "timer_state.pkl"
+        # Save file path (in Documents)
+        self.save_file = os.path.join(os.path.expanduser("~"), "Documents", "timer_state.pkl")
         
-        # Excel file path (will be set dynamically)
+        # Excel file path (will be set dynamically in Documents)
         self.excel_file = None
         
         # Job fields
@@ -82,7 +82,7 @@ class ModernCountdownTimer:
         title_label = ttk.Label(self.title_frame, text="COUNTDOWN TIMER", font=('Segoe UI', 16, 'bold'))
         title_label.pack()
         
-        # Input frame (fixed position)
+        # Input frame
         self.input_frame = ttk.Frame(self.root)
         self.input_frame.pack(pady=15, fill=tk.X)
         
@@ -167,7 +167,7 @@ class ModernCountdownTimer:
         
         ttk.Label(seconds_frame, text="Seconds", font=('Segoe UI', 8)).pack()
         
-        # Job input frame (inside input_frame)
+        # Job input frame
         self.job_frame = ttk.Frame(self.input_frame)
         self.job_frame.pack(pady=10)
         
@@ -270,7 +270,8 @@ class ModernCountdownTimer:
                     if not self.job_number or not self.job_description:
                         messagebox.showerror("Invalid Input", "Please enter both Job Number and Job Description.")
                         return
-                    self.excel_file = f"{self.job_number}_{self.job_description}.xlsx"
+                    # Save Excel file in Documents folder
+                    self.excel_file = os.path.join(os.path.expanduser("~"), "Documents", f"{self.job_number}_{self.job_description}.xlsx")
                     
                 except ValueError:
                     messagebox.showerror("Invalid Input", "Please enter valid numbers for time.")
@@ -365,7 +366,7 @@ class ModernCountdownTimer:
         try:
             wb.save(self.excel_file)
         except Exception as e:
-            print(f"Error saving to Excel: {e}")
+            messagebox.showerror("Excel Error", f"Failed to save to Excel: {e}")
     
     def confirm_reset(self):
         if messagebox.askyesno("Confirm Reset", "Are you sure you want to reset the timer?"):
