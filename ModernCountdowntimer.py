@@ -16,6 +16,15 @@ class ModernCountdownTimer:
         self.root.resizable(False, False)
         self.root.configure(bg="#2E3440")
         
+        # Set the window icon
+        try:
+            icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "timer.ico")
+            self.root.iconbitmap(icon_path)
+        except Exception as e:
+            error_log = os.path.join(os.path.expanduser("~"), "Downloads", "timer_error.log")
+            with open(error_log, "a") as f:
+                f.write(f"{datetime.now()}: Failed to load icon: {str(e)}\n")
+        
         # Timer variables
         self.hours = 0
         self.minutes = 0
@@ -31,10 +40,11 @@ class ModernCountdownTimer:
         self.mini_window = None
         self.mini_time_display = None
         
-        # File paths in Downloads
+        # File paths
         self.downloads_dir = os.path.join(os.path.expanduser("~"), "Downloads")
         self.save_file = os.path.join(self.downloads_dir, "timer_state.pkl")
         self.excel_file = None
+        self.error_log = os.path.join(self.downloads_dir, "timer_error.log")
         
         # Job fields
         self.job_number = ""
@@ -145,7 +155,7 @@ class ModernCountdownTimer:
         
         copyright_frame = ttk.Frame(self.root)
         copyright_frame.pack(side=tk.BOTTOM, pady=10)
-        copyright_label = ttk.Label(copyright_frame, text=f"\u00A9 Guth South Africa - Build {self.build_number}", font=('Segoe UI', 8), foreground="#ECEFF4")
+        copyright_label = ttk.Label(copyright_frame, text=f"\u00A9 GuthSouth Africa - Build {self.build_number}", font=('Segoe UI', 8), foreground="#ECEFF4")
         copyright_label.pack()
         
     def start_timer(self):
@@ -177,6 +187,8 @@ class ModernCountdownTimer:
                         messagebox.showerror("Invalid Input", "Please enter both Job Number and Job Description.")
                         return
                     self.excel_file = os.path.join(self.downloads_dir, f"{self.job_number}_{self.job_description}.xlsx")
+                    with open(self.error_log, "a") as f:
+                        f.write(f"{datetime.now()}: Excel file set to {self.excel_file}\n")
                     
                 except ValueError:
                     messagebox.showerror("Invalid Input", "Please enter valid numbers for time.")
@@ -269,6 +281,8 @@ class ModernCountdownTimer:
         data = [self.job_number, self.job_description, state, current_time, remaining_time, pause_duration]
         
         try:
+            with open(self.error_log, "a") as f:
+                f.write(f"{datetime.now()}: Attempting to save to {self.excel_file}\n")
             if os.path.exists(self.excel_file):
                 wb = load_workbook(self.excel_file)
                 ws = wb.active
@@ -279,9 +293,10 @@ class ModernCountdownTimer:
             
             ws.append(data)
             wb.save(self.excel_file)
+            with open(self.error_log, "a") as f:
+                f.write(f"{datetime.now()}: Successfully saved to {self.excel_file}\n")
         except Exception as e:
-            error_log = os.path.join(self.downloads_dir, "timer_error.log")
-            with open(error_log, "a") as f:
+            with open(self.error_log, "a") as f:
                 f.write(f"{datetime.now()}: Failed to save Excel: {str(e)}\n")
             messagebox.showerror("Excel Error", f"Failed to save to Excel: {str(e)}")
     
@@ -357,8 +372,9 @@ class ModernCountdownTimer:
         try:
             with open(self.save_file, 'wb') as f:
                 pickle.dump(state, f)
-        except:
-            pass
+        except Exception as e:
+            with open(self.error_log, "a") as f:
+                f.write(f"{datetime.now()}: Failed to save state: {str(e)}\n")
 
     def load_state(self):
         if os.path.exists(self.save_file):
