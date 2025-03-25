@@ -1,0 +1,16 @@
+Modern Countdown Timer Installation Complete
+--------------------------------------------
+
+Congratulations! Modern Countdown Timer is now installed.
+
+Getting Started:
+- Launch from the Start menu or desktop shortcut.
+- Enter a Job Number and Job Description to start.
+- Pause and resume to log events.
+
+Where to Find Your Files:
+- Excel logs (e.g., Job123_MyJob.xlsx) are saved in your Downloads folder:
+  C:\Users\YourName\Downloads
+
+Thank you for using Modern Countdown Timer!
+© GuthSouth Africa - Build 1.0.0

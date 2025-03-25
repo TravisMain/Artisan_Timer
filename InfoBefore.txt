@@ -1,0 +1,15 @@
+Welcome to Modern Countdown Timer Setup
+---------------------------------------
+
+Thank you for choosing Modern Countdown Timer!
+
+About This Program:
+- A modern countdown timer with support for up to 999 hours.
+- Logs pause/resume events to Excel files saved in your Downloads folder.
+
+Installation Notes:
+- This setup will install to Program Files.
+- Excel files will be saved in your Downloads folder (e.g., C:\Users\YourName\Downloads).
+
+Click "Next" to begin.
+© GuthSouth Africa - Build 1.0.0

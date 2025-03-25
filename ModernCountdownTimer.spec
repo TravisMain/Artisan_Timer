@@ -5,7 +5,7 @@ a = Analysis(
     ['ModernCountdownTimer.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('C:\\Program Files\\Python311\\Lib\\site-packages\\openpyxl', 'openpyxl')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -35,4 +35,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon=['timer.ico'],
 )
